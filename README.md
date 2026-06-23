@@ -1,70 +1,77 @@
 # Student Management System
 
-## Project Overview
-
-Student Management System is a full-stack web application developed using Node.js, Express.js, MySQL, HTML, CSS, and JavaScript.
-
-The application allows users to manage student records with features such as adding, editing, deleting, searching, and exporting student data.
-
----
+A simple Student Management System built using HTML, CSS, JavaScript, Node.js, Express.js, MySQL, and Playwright Automation Testing.
 
 ## Features
 
 * Add Student
+* Search Student
 * Edit Student
 * Delete Student
-* Search Student
-* Export Student Data to Excel
-* Duplicate Email Validation
-* MySQL Database Integration
+* Sort Students A-Z
+* Export Student Records to Excel
+* Display Total Student Count
+* Automated UI Testing using Playwright
 
----
+## Tech Stack
 
-## Technologies Used
+* Frontend: HTML, CSS, JavaScript
+* Backend: Node.js, Express.js
+* Database: MySQL
+* Testing: Playwright
+* Version Control: Git & GitHub
 
-### Frontend
+## Project Screenshots
 
-* HTML
-* CSS
-* JavaScript
+### Home Page
 
-### Backend
+![Home Page](screenshots/home-page.png)
 
-* Node.js
-* Express.js
+### Search Student
 
-### Database
+![Search Student](screenshots/search-student.png)
 
-* MySQL
+### Add Student
 
-### Automation Testing
+![Add Student](screenshots/add-student.png)
 
-* Playwright
-* Page Object Model (POM)
+### Playwright Test Results
 
----
+![Playwright Tests](screenshots/playwright-tests.png)
 
-## Project Structure
+## Installation
 
-student-management-system
+1. Clone the repository
 
-* public/
-* pages/
-* tests/
-* db.js
-* server.js
-* package.json
+git clone https://github.com/malleshN63/student-management-system.git
 
----
+2. Install dependencies
 
-## Automation Test Cases
+npm install
 
-* Add Student
-* Search Student
-* Delete Student
-* Edit Student
+3. Configure MySQL database
 
----
+Create database:
+
+student_management
+
+4. Start the application
+
+node server.js
+
+5. Open browser
+
+http://localhost:3000
+
+## Playwright Test Execution
+
+Run all tests:
+
+npx playwright test
+
+View HTML report:
+
+npx playwright show-report
 
 ## Author
 
