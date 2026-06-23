@@ -8,7 +8,6 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout Project
         uses: actions/checkout@v4
@@ -16,10 +15,13 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 24
 
       - name: Install Dependencies
         run: npm install
+
+      - name: Verify Playwright
+        run: npm list @playwright/test
 
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
