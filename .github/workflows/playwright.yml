@@ -20,6 +20,11 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
+      - name: Start Application
+        run: |
+          node server.js &
+          sleep 10
+
       - name: Verify Playwright
         run: npm list @playwright/test
 
