@@ -31,9 +31,13 @@ jobs:
         run: npm install
 
       - name: Setup Database
-        run: |
-          sudo apt-get install -y mysql-client
-          mysql -h 127.0.0.1 -uroot -proot student_management < student_management.sql
+  run: |
+    sudo apt-get install -y mysql-client
+
+    echo "Waiting for MySQL..."
+    sleep 30
+
+    mysql -h 127.0.0.1 -P 3306 -uroot -proot student_management < student_management.sql
 
       - name: Start Application
         run: |
