@@ -1,54 +1,54 @@
 name: Playwright Tests
 
 on:
-  push:
-    branches:
-      - main
+push:
+branches:
+- main
 
 jobs:
-  test:
-    runs-on: ubuntu-latest
+test:
+runs-on: ubuntu-latest
 
-    services:
-      mysql:
-        image: mysql:8.0
-        env:
-          MYSQL_ROOT_PASSWORD: root
-          MYSQL_DATABASE: student_management
-        ports:
-          - 3306:3306
 
-    steps:
-      - name: Checkout Project
-        uses: actions/checkout@v4
+services:
+  mysql:
+    image: mysql:8.0
+    env:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: student_management
+    ports:
+      - 3306:3306
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 24
+steps:
+  - name: Checkout Project
+    uses: actions/checkout@v4
 
-      - name: Install Dependencies
-        run: npm install
+  - name: Setup Node.js
+    uses: actions/setup-node@v4
+    with:
+      node-version: 24
 
-      - name: Setup Database
-  run: |
-    sudo apt-get install -y mysql-client
+  - name: Install Dependencies
+    run: npm install
 
-    echo "Waiting for MySQL..."
-    sleep 30
+  - name: Setup Database
+    run: |
+      sudo apt-get install -y mysql-client
+      echo "Waiting for MySQL..."
+      sleep 30
+      mysql -h 127.0.0.1 -P 3306 -uroot -proot student_management < student_management.sql
 
-    mysql -h 127.0.0.1 -P 3306 -uroot -proot student_management < student_management.sql
+  - name: Start Application
+    run: |
+      node server.js &
+      sleep 10
 
-      - name: Start Application
-        run: |
-          node server.js &
-          sleep 10
+  - name: Verify Playwright
+    run: npm list @playwright/test
 
-      - name: Verify Playwright
-        run: npm list @playwright/test
+  - name: Install Playwright Browsers
+    run: npx playwright install --with-deps
 
-      - name: Install Playwright Browsers
-        run: npx playwright install --with-deps
+  - name: Run Playwright Tests
+    run: npx playwright test
 
-      - name: Run Playwright Tests
-        run: npx playwright test
